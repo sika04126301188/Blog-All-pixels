@@ -1,0 +1,1384 @@
+<title>All Pixels</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ---------- Fichas de color y tipografia ----------
+     Base Cloud #F7F6FA · Lavanda Digital #ECE9F9 · Coral suave #FFB199
+     Violeta electrico #7C5CFC · Tinta profunda #14121F
+     Identidad deliberadamente clara: sin variante oscura, el fondo nunca
+     baja de estos tonos aunque el sistema este en modo oscuro. */
+  :root{
+    --bg:#F7F6FA;
+    --surface:#ECE9F9;
+    --coral:#FFB199;
+    --coral-deep:#FF8D6E;
+    --violet:#7C5CFC;
+    --violet-deep:#5E42D2;
+    --ink:#14121F;
+    --ink-soft:#5B5568;
+    --line:rgba(20,18,31,.09);
+    --shadow:0 24px 48px -24px rgba(94,66,210,.38);
+    --radius:26px;
+    --maxw:1180px;
+    color-scheme: light;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Manrope", system-ui, sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:"Bricolage Grotesque", "Manrope", system-ui, sans-serif;
+    color:var(--ink);
+    line-height:1.08;
+    margin:0;
+    text-wrap:balance;
+  }
+  p{margin:0;}
+  ul,ol{list-style:none;margin:0;padding:0;}
+  img{max-width:100%;display:block;}
+  figure{margin:0;}
+
+  a{
+    text-decoration:none;
+    color:var(--violet-deep);
+  }
+  a:hover{text-decoration:underline;}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible{
+    outline:2px solid var(--violet);
+    outline-offset:3px;
+    border-radius:6px;
+  }
+
+  main > section,
+  header,
+  footer{
+    padding-inline:6vw;
+  }
+  main > section{
+    padding-block:clamp(3.5rem, 6vw, 6rem);
+    max-width:calc(var(--maxw) + 12vw);
+    margin-inline:auto;
+  }
+
+  p.ojo{
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    font-size:.8rem;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--violet-deep);
+    background:#fff;
+    border:1px solid var(--line);
+    padding:.5rem 1rem;
+    border-radius:999px;
+    margin-block-end:1.5rem;
+  }
+
+  /* ---------- Encabezado ---------- */
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:1.5rem;
+    padding-block:1.1rem;
+    position:sticky;
+    top:0;
+    background:rgba(247,246,250,.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    z-index:20;
+  }
+  header a.logo{
+    font-family:"Bricolage Grotesque", sans-serif;
+    font-size:1.35rem;
+    font-weight:600;
+    color:var(--ink);
+  }
+  header a.logo:hover{text-decoration:none;}
+  header a.logo strong{
+    font-weight:800;
+    background:linear-gradient(120deg, var(--coral-deep), var(--violet));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  header nav ul{
+    display:flex;
+    gap:2rem;
+  }
+  header nav a{
+    color:var(--ink-soft);
+    font-weight:600;
+    font-size:.95rem;
+  }
+  header nav a:hover{color:var(--ink);}
+  header a.cta{
+    color:#fff;
+    background:linear-gradient(120deg, var(--coral-deep), var(--violet));
+    padding:.65rem 1.4rem;
+    border-radius:999px;
+    font-weight:700;
+    font-size:.92rem;
+    box-shadow:var(--shadow);
+  }
+  header a.cta:hover{text-decoration:none;filter:brightness(1.05);}
+  header button#menu-boton{
+    display:none;
+    font-weight:700;
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:.5rem 1rem;
+    background:#fff;
+  }
+
+  /* ---------- Hero ---------- */
+  section#hero{
+    display:grid;
+    grid-template-columns:1.05fr 1fr;
+    gap:clamp(2rem, 5vw, 4rem);
+    align-items:center;
+    padding-block-start:clamp(3rem, 7vw, 5.5rem);
+    position:relative;
+    overflow:hidden;
+  }
+  section#hero::before{
+    content:"";
+    position:absolute;
+    inset:-20% -10% auto auto;
+    width:46rem;
+    height:46rem;
+    background:radial-gradient(circle, rgba(124,92,252,.16), transparent 65%);
+    z-index:-1;
+    animation:aura 16s ease-in-out infinite alternate;
+  }
+  @keyframes aura{
+    from{transform:translate(0,0) scale(1);}
+    to{transform:translate(-4%, 4%) scale(1.08);}
+  }
+  section#hero h1{
+    font-size:clamp(2.4rem, 4.4vw, 3.6rem);
+    font-weight:800;
+    letter-spacing:-.01em;
+  }
+  section#hero h1 strong{
+    font-weight:800;
+    background:linear-gradient(120deg, var(--coral-deep), var(--violet));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  section#hero > p.sub{
+    max-width:34rem;
+    margin-block:1.4rem 2rem;
+    font-size:1.08rem;
+    color:var(--ink-soft);
+  }
+  p.acciones{
+    display:flex;
+    flex-wrap:wrap;
+    gap:1rem;
+    align-items:center;
+  }
+  p.acciones a:first-of-type{
+    color:#fff;
+    background:linear-gradient(120deg, var(--coral-deep), var(--violet));
+    padding:.85rem 1.8rem;
+    border-radius:999px;
+    font-weight:700;
+    box-shadow:var(--shadow);
+  }
+  p.acciones a:first-of-type:hover{text-decoration:none;filter:brightness(1.05);}
+  p.acciones a:nth-of-type(2){
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    font-weight:700;
+    color:var(--ink);
+    padding:.85rem .4rem;
+  }
+  p.acciones a:nth-of-type(2)::before{
+    content:"▶";
+    display:grid;
+    place-items:center;
+    width:2.1rem;
+    height:2.1rem;
+    border-radius:50%;
+    background:#fff;
+    border:1px solid var(--line);
+    font-size:.7rem;
+    color:var(--violet);
+  }
+
+  div.confianza{
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    margin-block-start:2.6rem;
+  }
+  div.confianza ul{
+    display:flex;
+  }
+  div.confianza li{
+    width:2.3rem;
+    height:2.3rem;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    font-size:.68rem;
+    font-weight:800;
+    color:#fff;
+    border:2px solid var(--bg);
+    margin-inline-start:-.6rem;
+  }
+  div.confianza li:first-of-type{margin-inline-start:0;}
+  div.confianza li:nth-of-type(1){background:var(--violet);}
+  div.confianza li:nth-of-type(2){background:var(--coral-deep);}
+  div.confianza li:nth-of-type(3){background:var(--ink);}
+  div.confianza li:nth-of-type(4){background:#fff;color:var(--violet);border-color:var(--violet);}
+  div.confianza p{
+    font-size:.86rem;
+    color:var(--ink-soft);
+  }
+  div.confianza p strong{
+    color:var(--ink);
+    font-variant-numeric:tabular-nums;
+  }
+
+  div.portal{
+    position:relative;
+    min-height:26rem;
+  }
+  div.portal figure{
+    position:relative;
+    width:min(100%, 26rem);
+    aspect-ratio:3/4;
+    margin-inline:auto;
+    border-radius:210px 210px 18px 18px;
+    overflow:hidden;
+    box-shadow:0 0 0 1px rgba(255,255,255,.6) inset, var(--shadow);
+  }
+  div.portal figure::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    box-shadow:inset 0 0 60px rgba(255,255,255,.35);
+    background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(124,92,252,.18));
+  }
+  div.portal figure img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  div.portal figcaption{
+    position:absolute;
+    width:1px;height:1px;
+    overflow:hidden;
+    clip:rect(0 0 0 0);
+  }
+  div.portal::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-1.2rem;
+    transform:translateX(-50%);
+    width:70%;
+    height:2.4rem;
+    border-radius:50%;
+    background:radial-gradient(closest-side, rgba(124,92,252,.35), transparent 75%);
+  }
+  div.portal aside{
+    position:absolute;
+    display:grid;
+    gap:.15rem;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:.9rem 1.1rem;
+    box-shadow:var(--shadow);
+    font-size:.8rem;
+    min-width:9.5rem;
+  }
+  div.portal aside p:first-of-type{
+    color:var(--ink-soft);
+    font-weight:600;
+  }
+  div.portal aside p:nth-of-type(2){
+    font-size:1.3rem;
+    font-weight:800;
+    font-variant-numeric:tabular-nums;
+  }
+  div.portal aside:first-of-type{
+    background:var(--violet-deep);
+    color:#fff;
+  }
+  div.portal aside:first-of-type p:first-of-type{
+    color:#fff;
+  }
+  div.portal aside:nth-of-type(1){top:6%;left:-8%;}
+  div.portal aside:nth-of-type(2){top:38%;right:-10%;}
+  div.portal aside:nth-of-type(3){bottom:2%;left:2%;}
+
+  /* Flotacion suave e independiente de las tres tarjetas del portal:
+     cada una se mueve un 5% de su propio alto hacia arriba y abajo,
+     con su propia duracion y un retraso negativo para que arranquen
+     ya desfasadas entre si (efecto "aleatorio", no sincronizado). */
+  @keyframes flotar{
+    0%, 100%{ transform:translateY(-20%); }
+    50%{ transform:translateY(20%); }
+  }
+  div.portal aside{
+    animation:flotar 5s ease-in-out infinite;
+  }
+  div.portal aside:nth-of-type(1){animation-duration:4.6s; animation-delay:-1.1s;}
+  div.portal aside:nth-of-type(2){animation-duration:6.2s; animation-delay:-3.4s;}
+  div.portal aside:nth-of-type(3){animation-duration:5.3s; animation-delay:-.7s;}
+
+  /* ---------- Encabezados de seccion ---------- */
+  main > section > h2{
+    font-size:clamp(1.9rem, 3vw, 2.6rem);
+    font-weight:800;
+    max-width:28rem;
+  }
+  main > section > p.sub{
+    max-width:36rem;
+    margin-block-start:.9rem;
+    color:var(--ink-soft);
+    font-size:1.05rem;
+  }
+
+  /* ==========================================================
+     La mesa + Encuentra tu nicho, fusionadas en una sola seccion
+     funcional: los chips de nicho filtran directamente el carrusel
+     de la mesa, que muestra 5 disenos a la vez y se desliza para
+     descubrir el resto (20 disenos en total).
+     ========================================================== */
+  section#mesa{
+    max-width:none;
+    padding-inline:0;
+  }
+  section#mesa > p.ojo,
+  section#mesa > h2,
+  section#mesa > p.sub{
+    padding-inline:6vw;
+  }
+  section#mesa > p.sub{margin-block-end:2.2rem;}
+
+  /* -- Filtro de nicho, integrado arriba del carrusel -- */
+  div.filtro-nicho{
+    padding-inline:6vw;
+    margin-block-end:2.2rem;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:1rem 1.5rem;
+  }
+  div.filtro-nicho p.etiqueta-filtro{
+    font-size:.78rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  div.filtro-nicho nav ul{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.7rem;
+  }
+  div.filtro-nicho nav button{
+    background:#fff;
+    border:1px solid var(--line);
+    padding:.62rem 1.2rem;
+    border-radius:999px;
+    font-weight:700;
+    font-size:.86rem;
+    color:var(--ink-soft);
+    transition:border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  div.filtro-nicho nav button:hover{border-color:var(--violet);color:var(--ink);}
+  div.filtro-nicho nav button[aria-pressed="true"]{
+    background:linear-gradient(120deg, var(--coral-deep), var(--violet));
+    color:#fff;
+    border-color:transparent;
+  }
+  p.contador-mesa{
+    font-size:.85rem;
+    color:var(--ink-soft);
+    padding-inline:6vw;
+    margin-block-end:1.2rem;
+    font-variant-numeric:tabular-nums;
+  }
+  p.contador-mesa strong{color:var(--ink);}
+
+  /* -- Panel deslizable: el articulo conserva exactamente su formato
+     horizontal original (dos fotos lado a lado + info a la derecha).
+     Solo se envuelve en un panel de altura fija (5 filas) que se
+     desliza verticalmente -scroll, rueda, tactil o flechas- para
+     descubrir el resto de los 20 disenos. */
+  div.mesa-controles{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:1rem;
+    padding-inline:6vw;
+    margin-block-end:1rem;
+  }
+  p.contador-mesa{
+    font-size:.85rem;
+    color:var(--ink-soft);
+    font-variant-numeric:tabular-nums;
+  }
+  p.contador-mesa strong{color:var(--ink);}
+  div.flechas-verticales{
+    display:flex;
+    gap:.6rem;
+    flex-shrink:0;
+  }
+  div.flechas-verticales button.flecha{
+    width:2.6rem;
+    height:2.6rem;
+    border-radius:50%;
+    background:#fff;
+    border:1px solid var(--line);
+    box-shadow:var(--shadow);
+    display:grid;
+    place-items:center;
+    color:var(--violet-deep);
+    font-size:1rem;
+  }
+  div.flechas-verticales button.flecha:hover{border-color:var(--violet);}
+  div.flechas-verticales button.flecha:disabled{
+    opacity:.35;
+    cursor:default;
+    box-shadow:none;
+  }
+
+  div.pista-envoltura{
+    position:relative;
+  }
+  div.pista-envoltura::after{
+    content:"";
+    position:absolute;
+    left:0;right:0;bottom:0;
+    height:3.5rem;
+    background:linear-gradient(180deg, transparent, var(--bg));
+    pointer-events:none;
+    transition:opacity .2s ease;
+  }
+  div.pista-envoltura.al-final::after{opacity:0;}
+
+  div.pista{
+    overflow-y:auto;
+    scroll-snap-type:y proximity;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+    max-height:70vh;
+  }
+  div.pista::-webkit-scrollbar{display:none;}
+
+  section#mesa article{
+    display:grid;
+    grid-template-columns:1fr 1fr auto;
+    grid-template-areas:"vista-a vista-b info";
+    gap:2.2rem;
+    align-items:center;
+    padding:2.6rem 6vw;
+    border-block-start:1px solid var(--line);
+    scroll-snap-align:start;
+  }
+  section#mesa article[hidden]{display:none;}
+  section#mesa article:nth-of-type(2n){background:var(--surface);}
+  section#mesa article figure{
+    grid-area:vista-a;
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    aspect-ratio:4/3;
+    position:relative;
+  }
+  section#mesa article figure:nth-of-type(2){grid-area:vista-b;}
+  section#mesa article figure img{width:100%;height:100%;object-fit:cover;}
+  section#mesa article figure figcaption{
+    position:absolute;
+    width:1px;height:1px;
+    overflow:hidden;
+    clip:rect(0 0 0 0);
+  }
+  section#mesa article div.info{
+    grid-area:info;
+    min-width:15rem;
+    max-width:18rem;
+  }
+  section#mesa article div.info p.etiqueta{
+    display:inline-block;
+    font-size:.72rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--violet-deep);
+    margin-block-end:.6rem;
+  }
+  section#mesa article div.info h3{
+    font-size:1.5rem;
+    font-weight:800;
+  }
+  section#mesa article div.info p.descripcion{
+    color:var(--ink-soft);
+    margin-block:.6rem 1rem;
+  }
+  section#mesa article div.info ul.pila{
+    display:flex;
+    gap:.5rem;
+    flex-wrap:wrap;
+    margin-block-end:1.2rem;
+  }
+  section#mesa article div.info ul.pila li{
+    font-size:.72rem;
+    font-weight:700;
+    color:var(--ink-soft);
+    background:#fff;
+    border:1px solid var(--line);
+    padding:.3rem .7rem;
+    border-radius:999px;
+  }
+  section#mesa article div.info p.acciones{gap:.6rem;}
+  section#mesa article div.info p.acciones a:first-of-type{
+    padding:.6rem 1.2rem;
+    font-size:.85rem;
+  }
+  section#mesa article div.info p.acciones a:nth-of-type(2){
+    padding:.6rem .9rem;
+    font-size:.85rem;
+    border:1px solid var(--line);
+    border-radius:999px;
+    color:var(--ink);
+  }
+  section#mesa article div.info p.acciones a:nth-of-type(2)::before{content:none;}
+  section#mesa article div.info p.acciones a:nth-of-type(2):hover{text-decoration:none;border-color:var(--violet);}
+
+  /* ---------- Como funciona ---------- */
+  section#como-funciona ol{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:2rem;
+    margin-block-start:2.5rem;
+    counter-reset:paso;
+  }
+  section#como-funciona li{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:2rem 1.7rem;
+    counter-increment:paso;
+  }
+    section#como-funciona li:nth-of-type(3){
+    background:linear-gradient(120deg,var(--violet) ,var(--coral-deep) );
+    border-radius:var(--radius);
+    padding:2rem 1.7rem;
+    counter-increment:paso;
+  }
+
+    section#como-funciona li:nth-of-type(3)::before{
+    content:counter(paso, decimal-leading-zero);
+    display:block;
+    font-family:"Bricolage Grotesque", sans-serif;
+    font-size:1.6rem;
+    font-weight:800;
+    color:#fff;
+    margin-block-end:1rem;
+    font-variant-numeric:tabular-nums;
+  }
+
+  section#como-funciona li::before{
+    content:counter(paso, decimal-leading-zero);
+    display:block;
+    font-family:"Bricolage Grotesque", sans-serif;
+    font-size:1.6rem;
+    font-weight:800;
+    color:var(--violet);
+    margin-block-end:1rem;
+    font-variant-numeric:tabular-nums;
+  }
+  section#como-funciona h3{font-size:1.2rem;margin-block-end:.5rem;}
+  section#como-funciona p{color:var(--ink-soft);font-size:.95rem;}
+    section#como-funciona li:nth-of-type(3) h3{font-size:1.2rem;margin-block-end:.5rem; color:#fff;}
+  section#como-funciona li:nth-of-type(3) p{color:#fff;font-size:.95rem;}
+
+  /* ---------- Beneficios ---------- */
+  section#beneficios{
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:3rem;
+    align-items:start;
+  }
+  section#beneficios > div.encabezado ul{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1.4rem;
+    margin-block-start:2.2rem;
+  }
+  section#beneficios li{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:1.6rem;
+  }
+  section#beneficios li h3{font-size:1.05rem;margin-block-end:.4rem;}
+  section#beneficios li p{color:var(--ink-soft);font-size:.92rem;}
+  section#beneficios > aside{
+    background:linear-gradient(160deg, var(--surface), #fff);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:2.4rem;
+    align-self:stretch;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  section#beneficios > aside p:first-of-type{
+    font-family:"Bricolage Grotesque", sans-serif;
+    font-size:1.5rem;
+    font-weight:700;
+    line-height:1.3;
+  }
+  section#beneficios > aside p:nth-of-type(2){
+    margin-block-start:1rem;
+    color:var(--ink-soft);
+    font-weight:700;
+    font-size:.9rem;
+  }
+
+  /* ---------- Comunidad + CTA final ---------- */
+  section#comunidad ul.testimonios{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1.6rem;
+    margin-block:2.5rem;
+  }
+  section#comunidad article{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:1.8rem;
+    height:100%;
+  }
+  section#comunidad blockquote{
+    margin:0 0 1.2rem;
+    font-size:1rem;
+    color:var(--ink);
+  }
+  section#comunidad cite{
+    font-style:normal;
+    font-weight:700;
+  }
+  section#comunidad p.autor{
+    font-size:.85rem;
+    color:var(--ink-soft);
+  }
+  div.cta-final{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:1.5rem;
+    background:linear-gradient(120deg, var(--coral-deep), var(--violet));
+    border-radius:var(--radius);
+    padding:2.6rem clamp(1.6rem, 4vw, 3rem);
+  }
+  div.cta-final h3{
+    color:#fff;
+    font-size:clamp(1.4rem, 2.4vw, 1.9rem);
+    max-width:24rem;
+  }
+  div.cta-final a{
+    color:var(--violet-deep);
+    background:#fff;
+    padding:.85rem 1.8rem;
+    border-radius:999px;
+    font-weight:800;
+    white-space:nowrap;
+  }
+  div.cta-final a:hover{text-decoration:none;filter:brightness(.97);}
+
+  /* ---------- Pie ---------- */
+  footer{
+    background:var(--surface);
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns:1.3fr repeat(3, .8fr) 1.3fr;
+    gap:2.2rem;
+    padding-block:3.5rem 1.6rem;
+  }
+  footer > div:first-of-type p{
+    margin-block-start:.8rem;
+    color:var(--ink-soft);
+    font-size:.9rem;
+    max-width:18rem;
+  }
+  footer nav h3{
+    font-size:.82rem;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--ink-soft);
+    margin-block-end:1rem;
+  }
+  footer nav ul{display:grid;gap:.65rem;}
+  footer nav a{
+    color:var(--ink);
+    font-size:.92rem;
+  }
+  footer nav a:hover{color:var(--violet-deep);}
+  footer form{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:1.4rem;
+  }
+  footer form p.titulo{font-weight:700;margin-block-end:.8rem;}
+  footer form div.campo{
+    display:flex;
+    gap:.5rem;
+  }
+  footer form label{
+    position:absolute;
+    width:1px;height:1px;
+    overflow:hidden;
+    clip:rect(0 0 0 0);
+  }
+  footer form input{
+    flex:1;
+    padding:.7rem .9rem;
+    border-radius:999px;
+    border:1px solid var(--line);
+    font:inherit;
+    min-width:0;
+  }
+  footer form button{
+    background:var(--ink);
+    color:#fff;
+    padding:.7rem 1.2rem;
+    border-radius:999px;
+    font-weight:700;
+    font-size:.85rem;
+    white-space:nowrap;
+  }
+  footer > p{
+    grid-column:1 / -1;
+    border-block-start:1px solid var(--line);
+    padding-block-start:1.4rem;
+    color:var(--ink-soft);
+    font-size:.82rem;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important;}
+  }
+
+  @media (max-width: 980px){
+    section#hero{grid-template-columns:1fr;}
+    div.portal{margin-block-start:2rem;}
+    section#beneficios{grid-template-columns:1fr;}
+    section#comunidad ul.testimonios{grid-template-columns:1fr 1fr;}
+    footer{grid-template-columns:1fr 1fr;}
+    div.filtro-nicho{flex-direction:column;align-items:flex-start;}
+    section#mesa article{
+      grid-template-columns:1fr 1fr;
+      grid-template-areas:"vista-a vista-b" "info info";
+    }
+  }
+
+  @media (max-width: 720px){
+    header{flex-wrap:wrap;}
+    header nav{
+      order:10;
+      width:100%;
+      border-block-start:1px solid var(--line);
+      padding-block:1rem .3rem;
+    }
+    header nav[hidden]{display:none;}
+    header nav ul{flex-direction:column;gap:.4rem;}
+    header a.cta{display:none;}
+    header button#menu-boton{display:inline-block;}
+    section#como-funciona ol{grid-template-columns:1fr;}
+    section#beneficios > div.encabezado ul{grid-template-columns:1fr;}
+    section#comunidad ul.testimonios{grid-template-columns:1fr;}
+    footer{grid-template-columns:1fr;}
+    div.cta-final{flex-direction:column;align-items:flex-start;}
+    section#mesa article{grid-template-columns:1fr;grid-template-areas:"vista-a" "vista-b" "info";}
+    section#mesa article div.info{max-width:none;}
+    div.mesa-controles{padding-inline:6vw;}
+    div.flechas-verticales button.flecha{width:2.3rem;height:2.3rem;font-size:.9rem;}
+  }
+
+  @media (min-width: 721px){
+    header nav[hidden]{display:block!important;}
+  }
+</style>
+
+<header>
+  <a href="#hero" class="logo">All<strong>Pixels</strong></a>
+  <nav id="nav-principal" aria-label="principal" hidden>
+    <ul>
+      <li><a href="#mesa">Explorar</a></li>
+      <li><a href="#categorias">Categorias</a></li>
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#comunidad">Comunidad</a></li>
+    </ul>
+  </nav>
+  <a href="#registro" class="cta">Empezar gratis</a>
+  <button type="button" id="menu-boton" aria-expanded="false" aria-controls="nav-principal">Menu</button>
+</header>
+
+<main>
+
+  <section id="hero">
+    <div>
+      <p class="ojo">+ El futuro del diseno web esta aqui</p>
+      <h1>Abre la puerta a un<br><strong>nuevo mundo</strong> de diseno</h1>
+      <p class="sub">Explora, previsualiza y descarga disenos web listos para lanzar. Cientos de plantillas premium organizadas como una mesa de inspiracion infinita.</p>
+      <p class="acciones">
+        <a href="#registro">Empezar gratis</a>
+        <a href="#mesa">Ver la mesa</a>
+      </p>
+      <div class="confianza">
+        <ul aria-hidden="true">
+          <li>MO</li>
+          <li>DS</li>
+          <li>VR</li>
+          <li>+</li>
+        </ul>
+        <p>Mas de <strong>15.000</strong> disenadores confian en All Pixels<br><strong>4.9</strong> sobre 5 en resenas</p>
+      </div>
+    </div>
+    <div class="portal">
+      <figure>
+        <img src="fotos/puerta.jpg" alt="puerta">
+
+        <figcaption>Vista previa de la mesa de disenos</figcaption>
+      </figure>
+      <aside>
+        <p>Disenos descargados</p>
+        <p>+15.230</p>
+      </aside>
+      <aside>
+        <p>Comunidad activa</p>
+        <p>8.400 creadores</p>
+      </aside>
+      <aside>
+        <p>Plantilla nueva</p>
+        <p>cada semana</p>
+      </aside>
+    </div>
+  </section>
+
+  <section id="mesa">
+    <p class="ojo">La mesa</p>
+    <h2>Cada diseno, servido completo</h2>
+    <p class="sub">Sin piezas sueltas ni maquetas a medias: cada entrada de la mesa muestra el diseno completo, listo para previsualizar y descargar. Elige tu nicho y desliza para ver los 20 disenos disponibles.</p>
+
+    <div class="filtro-nicho" id="categorias">
+      <p class="etiqueta-filtro">Encuentra tu nicho</p>
+      <nav aria-label="filtrar por categoria">
+        <ul>
+          <li><button type="button" data-categoria="todos" aria-pressed="true">Todos</button></li>
+          <li><button type="button" data-categoria="saas" aria-pressed="false">SaaS</button></li>
+          <li><button type="button" data-categoria="ecommerce" aria-pressed="false">Ecommerce</button></li>
+          <li><button type="button" data-categoria="portafolio" aria-pressed="false">Portafolio</button></li>
+          <li><button type="button" data-categoria="panel" aria-pressed="false">Panel de control</button></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="mesa-controles">
+      <p class="contador-mesa" aria-live="polite">Mostrando <strong id="contador-visible">5</strong> de <strong id="contador-total">20</strong> disenos</p>
+      <div class="flechas-verticales">
+        <button type="button" class="flecha" data-dir="prev" aria-label="Ver disenos anteriores" disabled>&#8593;</button>
+        <button type="button" class="flecha" data-dir="next" aria-label="Ver mas disenos">&#8595;</button>
+      </div>
+    </div>
+
+    <div class="pista-envoltura">
+      <div class="pista" id="pista-mesa" tabindex="0" aria-label="Mesa de disenos, desliza para ver mas">
+
+        <article data-categoria="saas">
+          <figure>
+            <img src="fotos/fm1.jpg" alt="">
+            <figcaption>Vista de escritorio</figcaption>
+          </figure>
+          <figure>
+            <img src="fotos/fm2.jpg" alt="">
+            <figcaption>Seccion de precios</figcaption>
+          </figure>
+          <div class="info">
+            <p class="etiqueta">SaaS</p>
+            <h3>Aurora</h3>
+            <p class="descripcion">Landing oscura y futurista para producto de software, con metricas destacadas y CTA de alto contraste.</p>
+            <ul class="pila"><li>HTML</li><li>Tailwind</li><li>Figma</li></ul>
+            <p class="acciones"><a href="#">Ver en vivo</a><a href="#">Descargar</a></p>
+          </div>
+        </article>
+
+        <article data-categoria="saas">
+          <figure>
+            <img src="fotos/fm3.jpg" alt="">
+            <figcaption>Vista de escritorio</figcaption>
+          </figure>
+          <figure>
+            <img src="fotos/fm4.jpg" alt="">
+            <figcaption>Seccion de precios</figcaption>
+          </figure>
+          <div class="info">
+            <p class="etiqueta">SaaS</p>
+            <h3>Vector</h3>
+            <p class="descripcion">Presenta casos de exito y proyectos con tarjetas de color solido, ideal para plataformas B2B.</p>
+            <ul class="pila"><li>HTML</li><li>CSS</li><li>Figma</li></ul>
+            <p class="acciones"><a href="#">Ver en vivo</a><a href="#">Descargar</a></p>
+          </div>
+        </article>
+
+        <article data-categoria="saas">
+          <figure>
+            <img src="fotos/fm5.jpg" alt="">
+            <figcaption>Vista de escritorio</figcaption>
+          </figure>
+          <figure>
+            <img src="fotos/fm6.jpg" alt="">
+            <figcaption>Onboarding</figcaption>
+          </figure>
+          <div class="info">
+            <p class="etiqueta">SaaS</p>
+            <h3>Fluxo</h3>
+            <p class="descripcion">Enfocada en la activacion: bloques de servicios claros y metricas de rendimiento en tiempo real.</p>
+            <ul class="pila"><li>HTML</li><li>Tailwind</li></ul>
+            <p class="acciones"><a href="#">Ver en vivo</a><a href="#">Descargar</a></p>
+          </div>
+        </article>
+
+        <article data-categoria="saas">
+          <figure>
+            <img src="fotos/fm7.jpg" alt="">
+            <figcaption>Vista de escritorio</figcaption>
+          </figure>
+          <figure>
+            <img src="fotos/fm8.jpg" alt="">
+            <figcaption>Onboarding</figcaption>
+          </figure>
+          <div class="info">
+            <p class="etiqueta">SaaS</p>
+            <h3>Zenith</h3>
+            <p class="descripcion">Testimonios y prueba social en primer plano, pensada para acelerar la conversion de prueba gratuita.</p>
+            <ul class="pila"><li>HTML</li><li>CSS</li><li>Figma</li></ul>
+            <p class="acciones"><a href="#">Ver en vivo</a><a href="#">Descargar</a></p>
+          </div>
+        </article>
+
+        <article data-categoria="saas">
+          <figure>
+            <img src="fotos/fm9.jpg" alt="">
+            <figcaption>Vista de escritorio</figcaption>
+          </figure>
+          <figure>
+            <img src="fotos/fm10.jpg" alt="">
+            <figcaption>Seccion de precios</figcaption>
+          </figure>
+          <div class="info">
+            <p class="etiqueta">SaaS</p>
+            <h3>Orbita</h3>
+            <p class="descripcion">Estructura modular con paneles de datos en vivo, perfecta para herramientas de analitica.</p>
+            <ul class="pila"><li>React</li><li>Tailwind</li></ul>
+            <p class="acciones"><a href="#">Ver en vivo</a><a href="#">Descargar</a></p>
+          </div>
+        </article>
+
+        <article data-categoria="ecommerce">
+          <figure>
+            <img src="fotos/fm11.jpg" alt="">
+            <figcaption>Catalogo</figcaption>
+          </figure>
+          <figure>
+            <img src="fotos/fm12.jpg" alt="">
+            <figcaption>Ficha de producto</figcaption>
+          </figure>
+          <div class="info">
+            <p class="etiqueta">Ecommerce</p>
+            <h3>Solaris</h3>
+            <p class="descripcion">Tienda online ligera y rapida para marcas de producto fisico, con foco en fotografia grande.</p>
+            <ul class="pila"><li>HTML</li><li>CSS</li><li>Figma</li></ul>
+            <p class="acciones"><a href="#">Ver en vivo</a><a href="#">Descargar</a></p>
+          </div>
+        </article>
+
+        <article data-categoria="ecommerce">
+          <figure>
+            <img src="fotos/fm13.jpg" alt="">
+            <figcaption>Catalogo</figcaption>
+          </figure>
+          <figure>
+            <img src="fotos/fm14.jpg" alt="">
+            <figcaption>Ficha de producto</figcaption>
+          </figure>
+          <div class="info">
+            <p class="etiqueta">Ecommerce</p>
+            <h3>Bazar</h3>
+            <p class="descripcion">Catalogo con filtros visuales y checkout en un paso, pensado para marcas de nicho.</p>
+            <ul class="pila"><li>HTML</li><li>Tailwind</li></ul>
+            <p class="acciones"><a href="#">Ver en vivo</a><a href="#">Descargar</a></p>
+          </div>
+        </article>
+
+        <article data-categoria="ecommerce">
+          <figure>
+            <img src="fotos/fm15.jpg" alt="">
+            <figcaption>Catalogo</figcaption>
+          </figure>
+          <figure>
+            <img src="fotos/fm16.jpg" alt="">
+            <figcaption>Ficha de producto</figcaption>
+          </figure>
+          <div class="info">
+            <p class="etiqueta">Ecommerce</p>
+            <h3>Kori</h3>
+            <p class="descripcion">Enfocada en reseñas y confianza, con badges de envio y devoluciones desde la portada.</p>
+            <ul class="pila"><li>HTML</li><li>CSS</li><li>Figma</li></ul>
+            <p class="acciones"><a href="#">Ver en vivo</a><a href="#">Descargar</a></p>
+          </div>
+        </article>
+
+        <article data-categoria="ecommerce">
+          <figure>
+            <img src="fotos/fm17.jpg" alt="">
+            <figcaption>Catalogo</figcaption>
+          </figure>
+          <figure>
+            <img src="fotos/fm18.jpg" alt="">
+            <figcaption>Ficha de producto</figcaption>
+          </figure>
+          <div class="info">
+            <p class="etiqueta">Ecommerce</p>
+            <h3>Lumina</h3>
+            <p class="descripcion">Diseno editorial para marcas de decoracion y estilo de vida, con carrito lateral persistente.</p>
+            <ul class="pila"><li>HTML</li><li>Tailwind</li><li>Figma</li></ul>
+            <p class="acciones"><a href="#">Ver en vivo</a><a href="#">Descargar</a></p>
+          </div>
+        </article>
+
+
+
+
+
+        <article data-categoria="ecommerce">
+          <figure>
+            <img src="fotos/fm19.jpg" alt="">
+            <figcaption>Catalogo</figcaption>
+          </figure>
+          <figure>
+            <img src="fotos/fm20.jpg" alt="">
+            <figcaption>Ficha de producto</figcaption>
+          </figure>
+          <div class="info">
+            <p class="etiqueta">Ecommerce</p>
+            <h3>Andes</h3>
+            <p class="descripcion">Pensada para productos artesanales, con historia de marca y galeria de materiales.</p>
+            <ul class="pila"><li>HTML</li><li>CSS</li></ul>
+            <p class="acciones"><a href="#">Ver en vivo</a><a href="#">Descargar</a></p>
+          </div>
+        </article>
+
+        <article data-categoria="portafolio">
+          <figure>
+            <img src="fotos/fm21.jpg" alt="">
+            <figcaption>Portada</figcaption>
+          </figure>
+          <figure>
+            <img src="fotos/fm22.jpg" alt="">
+            <figcaption>Galeria de proyectos</figcaption>
+          </figure>
+          <div class="info">
+            <p class="etiqueta">Portafolio</p>
+            <h3>Vertice</h3>
+            <p class="descripcion">Portafolio editorial para estudios creativos y disenadores freelance.</p>
+            <ul class="pila"><li>HTML</li><li>Tailwind</li></ul>
+            <p class="acciones"><a href="#">Ver en vivo</a><a href="#">Descargar</a></p>
+          </div>
+        </article>
+
+        <article data-categoria="portafolio">
+          <figure>
+            <img src="fotos/fm23.jpg" alt="">
+            <figcaption>Portada</figcaption>
+          </figure>
+          <figure>
+            <img src="fotos/fm24.jpg" alt="">
+            <figcaption>Galeria de proyectos</figcaption>
+          </figure>
+          <div class="info">
+            <p class="etiqueta">Portafolio</p>
+            <h3>Trazo</h3>
+            <p class="descripcion">Cuadricula de proyectos a pantalla completa con transiciones suaves entre estudios de caso.</p>
+            <ul class="pila"><li>HTML</li><li>CSS</li><li>Figma</li></ul>
+            <p class="acciones"><a href="#">Ver en vivo</a><a href="#">Descargar</a></p>
+          </div>
+        </article>
+
+        <article data-categoria="portafolio">
+          <figure>
+            <img src="fotos/fm25.jpg" alt="">
+            <figcaption>Portada</figcaption>
+          </figure>
+          <figure>
+            <img src="fotos/fm26.jpg" alt="">
+            <figcaption>Galeria de proyectos</figcaption>
+          </figure>
+          <div class="info">
+            <p class="etiqueta">Portafolio</p>
+            <h3>Estudio Norte</h3>
+            <p class="descripcion">Ideal para talleres y estudios de oficio, con antes/despues y testimonios reales de clientes.</p>
+            <ul class="pila"><li>HTML</li><li>Tailwind</li></ul>
+            <p class="acciones"><a href="#">Ver en vivo</a><a href="#">Descargar</a></p>
+          </div>
+        </article>
+
+        <article data-categoria="portafolio">
+          <figure>
+            <img src="fotos/fm27.jpg" alt="">
+            <figcaption>Portada</figcaption>
+          </figure>
+          <figure>
+            <img src="fotos/fm28.jpg" alt="">
+            <figcaption>Galeria de proyectos</figcaption>
+          </figure>
+          <div class="info">
+            <p class="etiqueta">Portafolio</p>
+            <h3>Lienzo</h3>
+            <p class="descripcion">Tipografia grande y espacios generosos para dejar que las imagenes del proyecto respiren.</p>
+            <ul class="pila"><li>HTML</li><li>CSS</li><li>Figma</li></ul>
+            <p class="acciones"><a href="#">Ver en vivo</a><a href="#">Descargar</a></p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="como-funciona">
+    <p class="ojo">Proceso</p>
+    <h2>Como funciona</h2>
+    <p class="sub">Tres pasos entre tu y un diseno listo para publicar.</p>
+    <ol>
+      <li>
+        <h3>Explora</h3>
+        <p>Recorre la mesa y descubre disenos organizados por nicho y estilo.</p>
+      </li>
+      <li>
+        <h3>Previsualiza</h3>
+        <p>Abre cada diseno en vivo, en escritorio y en movil, antes de decidir.</p>
+      </li>
+      <li>
+        <h3>Descarga</h3>
+        <p>Llevate el codigo limpio, listo para personalizar y lanzar hoy mismo.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section id="beneficios">
+    <div class="encabezado">
+      <p class="ojo">Beneficios</p>
+      <h2>Por que All Pixels</h2>
+      <ul>
+        <li>
+          <h3>Calidad premium</h3>
+          <p>Cada diseno pasa una revision manual antes de sumarse a la mesa.</p>
+        </li>
+        <li>
+          <h3>Codigo limpio</h3>
+          <p>HTML semantico y CSS ordenado, listo para escalar sin dolores de cabeza.</p>
+        </li>
+        <li>
+          <h3>Actualizaciones constantes</h3>
+          <p>Nuevas plantillas cada semana, sin costo adicional para la comunidad.</p>
+        </li>
+        <li>
+          <h3>Soporte real</h3>
+          <p>Un equipo de disenadores responde tus dudas en horas, no en dias.</p>
+        </li>
+      </ul>
+    </div>
+    <aside>
+      <p>"All Pixels cambio la forma en la que mi equipo arranca cada proyecto."</p>
+      <p>Mas de 15.000 disenadores ya construyeron su web con All Pixels</p>
+    </aside>
+  </section>
+
+  <section id="comunidad">
+    <p class="ojo">Comunidad</p>
+    <h2>Lo dice la comunidad</h2>
+    <ul class="testimonios">
+      <li>
+        <article>
+          <blockquote><p>All Pixels me ahorro semanas de trabajo. Descargue, ajuste colores y publique el mismo dia.</p></blockquote>
+          <p class="autor"><cite>Mariana Ortiz</cite> — Disenadora freelance</p>
+        </article>
+      </li>
+      <li>
+        <article>
+          <blockquote><p>El codigo llega tan limpio que mi equipo lo integra sin friccion en nuestro stack.</p></blockquote>
+          <p class="autor"><cite>Diego Salas</cite> — Frontend lead</p>
+        </article>
+      </li>
+      <li>
+        <article>
+          <blockquote><p>La mesa de disenos es el primer lugar donde busco inspiracion antes de empezar un proyecto.</p></blockquote>
+          <p class="autor"><cite>Valentina Rios</cite> — Directora creativa</p>
+        </article>
+      </li>
+    </ul>
+    <div class="cta-final" id="registro">
+      <h3>Tu proximo diseno te esta esperando</h3>
+      <a href="#">Empezar gratis</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div>
+    <a href="#hero" class="logo">All<strong>Pixels</strong></a>
+    <p>La mesa donde exploras, previsualizas y descargas disenos web listos para lanzar.</p>
+  </div>
+  <nav aria-label="producto">
+    <h3>Producto</h3>
+    <ul>
+      <li><a href="#mesa">Explorar</a></li>
+      <li><a href="#categorias">Categorias</a></li>
+      <li><a href="#como-funciona">Como funciona</a></li>
+    </ul>
+  </nav>
+  <nav aria-label="recursos">
+    <h3>Recursos</h3>
+    <ul>
+      <li><a href="#comunidad">Comunidad</a></li>
+      <li><a href="#">Guias</a></li>
+      <li><a href="#">Blog</a></li>
+    </ul>
+  </nav>
+  <nav aria-label="legal">
+    <h3>Legal</h3>
+    <ul>
+      <li><a href="#">Terminos</a></li>
+      <li><a href="#">Privacidad</a></li>
+      <li><a href="#">Licencias</a></li>
+    </ul>
+  </nav>
+  <form>
+    <p class="titulo">Recibe un diseno nuevo cada semana</p>
+    <div class="campo">
+      <label for="correo">Correo electronico</label>
+      <input type="email" id="correo" name="correo" placeholder="tu@correo.com" required>
+      <button type="submit">Suscribirme</button>
+    </div>
+  </form>
+  <p>Personalizado por samir®</p>
+</footer>
+
+<script>
+  (function(){
+    var boton = document.getElementById('menu-boton');
+    var nav = document.getElementById('nav-principal');
+    boton.addEventListener('click', function(){
+      var abierto = boton.getAttribute('aria-expanded') === 'true';
+      boton.setAttribute('aria-expanded', String(!abierto));
+      nav.hidden = abierto;
+    });
+
+    /* ---------- Mesa + nicho: filtro y panel deslizable (vertical) ----------
+       El articulo conserva su formato horizontal original; solo se limita
+       la altura del panel a 5 filas y se desliza (scroll, rueda, tactil
+       o flechas) para revelar el resto de los 20 disenos. */
+    var pista = document.getElementById('pista-mesa');
+    var envoltura = pista.closest('.pista-envoltura');
+    var articulos = Array.prototype.slice.call(pista.querySelectorAll('article'));
+    var chips = document.querySelectorAll('.filtro-nicho nav button');
+    var flechaPrev = document.querySelector('.flechas-verticales .flecha[data-dir="prev"]');
+    var flechaNext = document.querySelector('.flechas-verticales .flecha[data-dir="next"]');
+    var contadorVisible = document.getElementById('contador-visible');
+    var contadorTotal = document.getElementById('contador-total');
+    var totalDisenos = articulos.length;
+    var FILAS_VISIBLES = 5;
+
+    function filaAlto(){
+      var visible = articulos.filter(function(a){ return !a.hidden; })[0];
+      return visible ? visible.getBoundingClientRect().height : 0;
+    }
+
+    function actualizarFlechas(){
+      var maxScroll = pista.scrollHeight - pista.clientHeight - 2;
+      var alFinal = maxScroll <= 2 || pista.scrollTop >= maxScroll;
+      flechaPrev.disabled = pista.scrollTop <= 2;
+      flechaNext.disabled = alFinal;
+      if(envoltura) envoltura.classList.toggle('al-final', alFinal);
+    }
+
+    function ajustarAltura(){
+      var alto = filaAlto();
+      if(alto > 0){
+        pista.style.maxHeight = Math.round(alto * FILAS_VISIBLES) + 'px';
+      }
+      actualizarFlechas();
+    }
+
+    flechaPrev.addEventListener('click', function(){
+      pista.scrollBy({ top: -filaAlto(), behavior: 'smooth' });
+    });
+    flechaNext.addEventListener('click', function(){
+      pista.scrollBy({ top: filaAlto(), behavior: 'smooth' });
+    });
+    pista.addEventListener('scroll', actualizarFlechas);
+
+    var reajustar;
+    window.addEventListener('resize', function(){
+      clearTimeout(reajustar);
+      reajustar = setTimeout(ajustarAltura, 150);
+    });
+
+    /* Filtro por nicho: controla que articulos viven en la misma mesa deslizable */
+    chips.forEach(function(chip){
+      chip.addEventListener('click', function(){
+        chips.forEach(function(c){ c.setAttribute('aria-pressed', 'false'); });
+        chip.setAttribute('aria-pressed', 'true');
+        var filtro = chip.getAttribute('data-categoria');
+        var visibles = 0;
+        articulos.forEach(function(a){
+          var coincide = filtro === 'todos' || a.getAttribute('data-categoria') === filtro;
+          a.hidden = !coincide;
+          if(coincide) visibles++;
+        });
+        pista.scrollTop = 0;
+        contadorVisible.textContent = Math.min(FILAS_VISIBLES, visibles);
+        contadorTotal.textContent = visibles;
+        ajustarAltura();
+      });
+    });
+
+    contadorTotal.textContent = totalDisenos;
+    window.addEventListener('load', ajustarAltura);
+    if(document.fonts && document.fonts.ready){
+      document.fonts.ready.then(ajustarAltura);
+    }
+    ajustarAltura();
+  })();
+</script>
